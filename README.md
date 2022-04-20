@@ -1,2 +1,2 @@
 # controle-de-financas
-Um sistema baseado em microservicos com Sring, Kotlin, Kafka e Dynamodb
+Um sistema baseado em microservicos com Spring, Kotlin, Kafka e Dynamodb
