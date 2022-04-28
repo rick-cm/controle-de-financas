@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: auth-api
+
+server:
+  port: 8083
+  servlet:
+    context-path: /auth-api
+#  error:
+#    include-message: always
+#    include-binding-errors: always
+
+security:
+  jwt:
+    token:
+      secret-key: signature_key
+      expire-length: 360000
+
+aws:
+  #aws global configurations
+  key: localstack
+  secret: localstack
+  region: us-east-1
+
+  #dynamodb configurations
+  dynamodb:
+    region: us-east-1
+    endpointUrl: http://localhost:8000
+
