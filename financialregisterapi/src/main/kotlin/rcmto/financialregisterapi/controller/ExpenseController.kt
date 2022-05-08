@@ -1,19 +1,19 @@
 package rcmto.financialregisterapi.controller
 
 import org.springframework.http.ResponseEntity
-import org.springframework.security.core.annotation.AuthenticationPrincipal
-import org.springframework.security.core.userdetails.UserDetails
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.transaction.annotation.Transactional
+import org.springframework.web.bind.annotation.*
+import rcmto.financialregisterapi.dto.ExpenseRegisterDTO
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("/expenses")
 class ExpenseController {
 
-    @GetMapping
-    fun addExpense() : ResponseEntity<Any> {
-//        println(user.username)
+    @PostMapping
+    @Transactional
+    fun addExpense(@Valid @RequestBody request: ExpenseRegisterDTO) : ResponseEntity<Any> {
+        println(request);
         return ResponseEntity.ok().build();
     }
 }
