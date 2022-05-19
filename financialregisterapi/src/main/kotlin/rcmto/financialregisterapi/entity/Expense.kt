@@ -8,11 +8,12 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import rcmto.financialregisterapi.enums.ExpenseStatus
 import rcmto.financialregisterapi.enums.ExpenseType
 import java.math.BigDecimal
+import java.util.*
 
 @DynamoDBTable(tableName = "expenses")
 data class Expense(
     @field:DynamoDBHashKey(attributeName = "uuid")
-    private var uuid: String,
+    private val uuid: String,
     @field:DynamoDBAttribute(attributeName = "amount")
     private val amount: BigDecimal,
     @field:DynamoDBAttribute(attributeName = "description")
@@ -29,5 +30,12 @@ data class Expense(
     @field:DynamoDBAttribute(attributeName = "status")
     private val status: ExpenseStatus,
 ){
-
+    constructor(    amount: BigDecimal,
+                    description: String,
+                    referenceDate: String,
+                    recurrent: Boolean,
+                    type: ExpenseType,
+                    status: ExpenseStatus
+    ) : this(UUID.randomUUID().toString(),amount,description,referenceDate,recurrent,type,status){
+    }
 }

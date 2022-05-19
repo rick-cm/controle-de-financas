@@ -1,6 +1,7 @@
 package rcmto.financialregisterapi.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import rcmto.financialregisterapi.entity.Expense
 import rcmto.financialregisterapi.enums.ExpenseStatus
 import rcmto.financialregisterapi.enums.ExpenseType
 import rcmto.financialregisterapi.validator.YearMonthFormat
@@ -25,4 +26,14 @@ class ExpenseRegisterDTO(
     @field:NotNull
     private val status: ExpenseStatus,
 ) {
+    fun toExpense(): Expense{
+        return Expense(
+            amount,
+            description,
+            referenceDate,
+            recurrent,
+            type,
+            status,
+        )
+    }
 }
