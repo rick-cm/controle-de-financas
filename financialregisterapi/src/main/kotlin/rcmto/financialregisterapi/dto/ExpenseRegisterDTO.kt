@@ -6,6 +6,7 @@ import rcmto.financialregisterapi.enums.ExpenseStatus
 import rcmto.financialregisterapi.enums.ExpenseType
 import rcmto.financialregisterapi.validator.YearMonthFormat
 import java.math.BigDecimal
+import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Positive
 
@@ -14,6 +15,7 @@ class ExpenseRegisterDTO(
     @field:Positive
     private var amount:  BigDecimal,
     @field:NotNull
+    @field:NotBlank
     private val description: String,
     @JsonProperty("reference_date")
     @YearMonthFormat
