@@ -12,25 +12,25 @@ import java.util.*
 
 @DynamoDBTable(tableName = "incomes")
 data class Income (
-    @field:DynamoDBHashKey(attributeName = "uuid")
-    private val uuid: String,
-    @field:DynamoDBAttribute(attributeName = "user")
-    private val user: String,
-    @field:DynamoDBAttribute(attributeName = "amount")
-    private val amount: BigDecimal,
-    @field:DynamoDBAttribute(attributeName = "description")
-    private val description: String,
+    @DynamoDBHashKey(attributeName = "uuid")
+    val uuid: String,
+    @DynamoDBAttribute(attributeName = "user")
+    val user: String,
+    @DynamoDBAttribute(attributeName = "amount")
+    val amount: BigDecimal,
+    @DynamoDBAttribute(attributeName = "description")
+    val description: String,
     @JsonProperty("reference_date")
-    @field:DynamoDBAttribute(attributeName = "reference_date")
-    private val referenceDate: String,
-    @field:DynamoDBAttribute(attributeName = "recurrent")
-    private val recurrent: Boolean,
-    @field:DynamoDBTypeConvertedEnum
-    @field:DynamoDBAttribute(attributeName = "type")
-    private val type: IncomeType,
-    @field:DynamoDBTypeConvertedEnum
-    @field:DynamoDBAttribute(attributeName = "status")
-    private val status: IncomeStatus,
+    @DynamoDBAttribute(attributeName = "reference_date")
+    val referenceDate: String,
+    @DynamoDBAttribute(attributeName = "recurrent")
+    val recurrent: Boolean,
+    @DynamoDBTypeConvertedEnum
+    @DynamoDBAttribute(attributeName = "type")
+    val type: IncomeType,
+    @DynamoDBTypeConvertedEnum
+    @DynamoDBAttribute(attributeName = "status")
+    val status: IncomeStatus,
 ){
     constructor(user: String,
                 amount: BigDecimal,
