@@ -2,11 +2,10 @@ package rcmto.financialregisterapi.controller
 
 import org.springframework.http.ResponseEntity
 import org.springframework.transaction.annotation.Transactional
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import rcmto.financialregisterapi.dto.IncomeRegisterDTO
+import rcmto.financialregisterapi.entity.Expense
+import rcmto.financialregisterapi.entity.Income
 import rcmto.financialregisterapi.service.IncomeService
 import javax.validation.Valid
 
@@ -21,5 +20,13 @@ class IncomeController(val service : IncomeService) {
         val user = "rick@email.com"
         val addIncome = service.addIncome(request.toIncome(user))
         return ResponseEntity.ok(addIncome.get())
+    }
+
+    @GetMapping
+    fun getExpensesByReferenceDate(@RequestParam("reference_date") referenceDate: String) : ResponseEntity<Set<Income>> {
+        //TODO: pegar o user do autentication principal
+        val user = "rick@email.com"
+        val incomesList = service.getincomesByReferenceDate(referenceDate, user)
+        return ResponseEntity.ok(incomesList.get());
     }
 }

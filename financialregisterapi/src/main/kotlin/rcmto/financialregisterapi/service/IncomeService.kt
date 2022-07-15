@@ -11,4 +11,8 @@ class IncomeService(private val repository: IncomeRepository) {
         println(income);
         return Optional.of(repository.save(income));
     }
+
+    fun getincomesByReferenceDate(referenceDate: String, user: String) : Optional<Set<Income>> {
+        return repository.findByReferenceDateAndUser(referenceDate, user)
+    }
 }

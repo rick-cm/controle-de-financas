@@ -11,27 +11,48 @@ import java.math.BigDecimal
 import java.util.*
 
 @DynamoDBTable(tableName = "incomes")
-data class Income (
+class Income {
     @DynamoDBHashKey(attributeName = "uuid")
-    val uuid: String,
+    var uuid: String = ""
     @DynamoDBAttribute(attributeName = "user")
-    val user: String,
+    var user: String = ""
     @DynamoDBAttribute(attributeName = "amount")
-    val amount: BigDecimal,
+    var amount: BigDecimal = BigDecimal.ZERO
     @DynamoDBAttribute(attributeName = "description")
-    val description: String,
+    var description: String = ""
     @JsonProperty("reference_date")
     @DynamoDBAttribute(attributeName = "reference_date")
-    val referenceDate: String,
+    var referenceDate: String = ""
     @DynamoDBAttribute(attributeName = "recurrent")
-    val recurrent: Boolean,
+    var recurrent: Boolean = false
     @DynamoDBTypeConvertedEnum
     @DynamoDBAttribute(attributeName = "type")
-    val type: IncomeType,
+    var type: IncomeType = IncomeType.OTHER
     @DynamoDBTypeConvertedEnum
     @DynamoDBAttribute(attributeName = "status")
-    val status: IncomeStatus,
-){
+    var status: IncomeStatus = IncomeStatus.PENDING
+
+    constructor()
+
+    constructor(uuid: String,
+                user: String,
+                amount: BigDecimal,
+                description: String,
+                referenceDate: String,
+                recurrent: Boolean,
+                type: IncomeType,
+                status: IncomeStatus
+    ) {
+        this.uuid = uuid;
+        this.user = user;
+        this.amount = amount
+        this.description = description
+        this.referenceDate = referenceDate
+        this.recurrent = recurrent
+        this.type = type
+        this.status = status
+    }
+
     constructor(user: String,
                 amount: BigDecimal,
                 description: String,
@@ -39,6 +60,5 @@ data class Income (
                 recurrent: Boolean,
                 type: IncomeType,
                 status: IncomeStatus
-    ) : this(UUID.randomUUID().toString(),user,amount,description,referenceDate,recurrent,type,status){
-    }
+    ) : this(UUID.randomUUID().toString(),user,amount,description,referenceDate,recurrent,type,status)
 }
