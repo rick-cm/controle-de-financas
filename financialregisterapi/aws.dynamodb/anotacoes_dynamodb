@@ -1,0 +1,5 @@
+aws dynamodb create-table --cli-input-json file://aws.dynamodb/expenses_table.json --endpoint-url=http://localhost:4566
+aws dynamodb scan --table-name expenses --endpoint-url http://localhost:4566
+
+aws dynamodb create-table --cli-input-json file://aws.dynamodb/incomes_table.json --endpoint-url=http://localhost:4566
+aws dynamodb scan --table-name incomes --endpoint-url http://localhost:4566

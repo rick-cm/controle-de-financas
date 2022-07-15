@@ -10,3 +10,16 @@ security:
   jwt:
     token:
       secret-key: signature_key
+
+aws:
+  #aws global configurations
+  key: localstack
+  secret: localstack
+  region: us-east-1
+
+  #dynamodb configurations
+  dynamodb:
+    region: us-east-1
+    endpointUrl: http://localhost:4566
+
+
