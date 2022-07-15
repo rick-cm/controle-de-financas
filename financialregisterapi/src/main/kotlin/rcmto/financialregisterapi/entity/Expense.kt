@@ -11,27 +11,49 @@ import java.math.BigDecimal
 import java.util.*
 
 @DynamoDBTable(tableName = "expenses")
-data class Expense(
+class Expense {
     @DynamoDBHashKey(attributeName = "uuid")
-    val uuid: String,
+    var uuid: String = "";
+
     @DynamoDBAttribute(attributeName = "user")
-    val user: String,
+    var user: String = "";
     @DynamoDBAttribute(attributeName = "amount")
-    val amount: BigDecimal,
+    var amount: BigDecimal = BigDecimal.ZERO;
     @DynamoDBAttribute(attributeName = "description")
-    val description: String,
+    var description: String = ""
     @JsonProperty("reference_date")
     @DynamoDBAttribute(attributeName = "reference_date")
-    val referenceDate: String,
+    var referenceDate: String = ""
     @DynamoDBAttribute(attributeName = "recurrent")
-    val recurrent: Boolean,
+    var recurrent: Boolean = false
     @DynamoDBTypeConvertedEnum
     @DynamoDBAttribute(attributeName = "type")
-    val type: ExpenseType,
+    var type: ExpenseType = ExpenseType.OTHER
     @DynamoDBTypeConvertedEnum
     @DynamoDBAttribute(attributeName = "status")
-    val status: ExpenseStatus,
-){
+    var status: ExpenseStatus = ExpenseStatus.PENDING
+
+    constructor()
+
+    constructor(    uuid: String,
+                    user: String,
+                    amount: BigDecimal,
+                    description: String,
+                    referenceDate: String,
+                    recurrent: Boolean,
+                    type: ExpenseType,
+                    status: ExpenseStatus
+    ){
+        this.uuid = uuid;
+        this.user = user;
+        this.amount = amount
+        this.description = description
+        this.referenceDate = referenceDate
+        this.recurrent = recurrent
+        this.type = type
+        this.status = status
+    }
+
     constructor(    user: String,
                     amount: BigDecimal,
                     description: String,
@@ -40,5 +62,9 @@ data class Expense(
                     type: ExpenseType,
                     status: ExpenseStatus
     ) : this(UUID.randomUUID().toString(),user,amount,description,referenceDate,recurrent,type,status){
+    }
+
+    override fun toString(): String {
+        return "$uuid $user $amount $description $referenceDate $recurrent $type $status"
     }
 }

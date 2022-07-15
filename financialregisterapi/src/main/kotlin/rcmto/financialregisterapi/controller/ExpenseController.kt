@@ -20,4 +20,12 @@ class ExpenseController(val service : ExpenseService) {
         val addExpense = service.addExpense(request.toExpense(user))
         return ResponseEntity.ok(addExpense.get());
     }
+
+    @GetMapping
+    fun getExpensesByReferenceDate(@RequestParam("reference_date") referenceDate: String) : ResponseEntity<Set<Expense>> {
+        //TODO: pegar o user do autentication principal
+        val user = "rick@email.com"
+        val expenseList = service.getExpenseByReferenceDate(referenceDate, user)
+        return ResponseEntity.ok(expenseList.get());
+    }
 }

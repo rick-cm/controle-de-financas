@@ -12,4 +12,8 @@ class ExpenseService(private val repository: ExpenseRepository){
         println(expense);
         return Optional.of(repository.save(expense));
     }
+
+    fun getExpenseByReferenceDate(referenceDate: String, user: String) : Optional<Set<Expense>> {
+        return repository.findByReferenceDateAndUser(referenceDate, user)
+    }
 }
