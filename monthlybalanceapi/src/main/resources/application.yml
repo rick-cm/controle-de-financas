@@ -1,0 +1,12 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /balance-api
+  error:
+    include-message: always
+    include-binding-errors: always
+
+security:
+  jwt:
+    token:
+      secret-key: signature_key
