@@ -28,8 +28,9 @@ class IncomeRegisterDTO (
     @field:NotNull
     private val status: IncomeStatus,
 ){
-    fun toIncome(): Income {
+    fun toIncome(user: String): Income {
         return Income(
+            user,
             amount,
             description,
             referenceDate,

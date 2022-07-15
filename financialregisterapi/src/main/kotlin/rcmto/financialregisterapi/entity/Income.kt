@@ -14,6 +14,8 @@ import java.util.*
 data class Income (
     @field:DynamoDBHashKey(attributeName = "uuid")
     private val uuid: String,
+    @field:DynamoDBAttribute(attributeName = "user")
+    private val user: String,
     @field:DynamoDBAttribute(attributeName = "amount")
     private val amount: BigDecimal,
     @field:DynamoDBAttribute(attributeName = "description")
@@ -30,12 +32,13 @@ data class Income (
     @field:DynamoDBAttribute(attributeName = "status")
     private val status: IncomeStatus,
 ){
-    constructor(amount: BigDecimal,
+    constructor(user: String,
+                amount: BigDecimal,
                 description: String,
                 referenceDate: String,
                 recurrent: Boolean,
                 type: IncomeType,
                 status: IncomeStatus
-    ) : this(UUID.randomUUID().toString(),amount,description,referenceDate,recurrent,type,status){
+    ) : this(UUID.randomUUID().toString(),user,amount,description,referenceDate,recurrent,type,status){
     }
 }

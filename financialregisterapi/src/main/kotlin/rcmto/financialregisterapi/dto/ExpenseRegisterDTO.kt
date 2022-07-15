@@ -28,8 +28,9 @@ class ExpenseRegisterDTO(
     @field:NotNull
     private val status: ExpenseStatus,
 ) {
-    fun toExpense(): Expense{
+    fun toExpense(user: String): Expense{
         return Expense(
+            user,
             amount,
             description,
             referenceDate,

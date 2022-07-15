@@ -17,7 +17,9 @@ class IncomeController(val service : IncomeService) {
     @PostMapping
     @Transactional
     fun addIncome(@Valid @RequestBody request: IncomeRegisterDTO) : ResponseEntity<Any> {
-        service.addIncome(request.toIncome())
+        //TODO: pegar o user do autentication principal
+        val user = "rick@email.com"
+        service.addIncome(request.toIncome(user))
         return ResponseEntity.ok().build();
     }
 }

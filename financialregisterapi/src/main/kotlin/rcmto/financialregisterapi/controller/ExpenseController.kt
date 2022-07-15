@@ -14,7 +14,9 @@ class ExpenseController(val service : ExpenseService) {
     @PostMapping
     @Transactional
     fun addExpense(@Valid @RequestBody request: ExpenseRegisterDTO) : ResponseEntity<Any> {
-        service.addExpense(request.toExpense())
+        //TODO: pegar o user do autentication principal
+        val user = "rick@email.com"
+        service.addExpense(request.toExpense(user))
         return ResponseEntity.ok().build();
     }
 }
