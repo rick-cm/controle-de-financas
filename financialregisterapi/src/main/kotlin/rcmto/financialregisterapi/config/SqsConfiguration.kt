@@ -33,7 +33,7 @@ class SqsConfiguration {
             .withEndpointConfiguration(EndpointConfiguration(endpointUrl, region))
             .build()
 
-        amazonSQSAsync.createQueue("new-expense-queue")
+        amazonSQSAsync.createQueue("new-financial-register-queue")
         return amazonSQSAsync
     }
 }

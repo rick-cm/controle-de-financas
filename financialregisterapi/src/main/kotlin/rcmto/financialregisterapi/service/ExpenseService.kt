@@ -13,7 +13,7 @@ class ExpenseService(private val repository: ExpenseRepository,
 
     fun addExpense(expense: Expense) : Optional<Expense> {
         println(expense);
-        messagingTemplate.convertAndSend("new-expense-queue", expense.toSqsMessage())
+        messagingTemplate.convertAndSend("new-financial-register-queue", expense.toSqsMessage())
         return Optional.of(repository.save(expense));
     }
 

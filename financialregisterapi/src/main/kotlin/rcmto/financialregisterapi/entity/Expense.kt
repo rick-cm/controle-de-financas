@@ -5,9 +5,10 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConvertedEnum
 import com.fasterxml.jackson.annotation.JsonProperty
-import rcmto.financialregisterapi.dto.ExpenseSqsDto
+import rcmto.financialregisterapi.dto.SqsMessageDto
 import rcmto.financialregisterapi.enums.ExpenseStatus
 import rcmto.financialregisterapi.enums.ExpenseType
+import rcmto.financialregisterapi.enums.FinancialRegisterType
 import java.math.BigDecimal
 import java.util.*
 
@@ -69,9 +70,9 @@ class Expense {
         return "$uuid $user $amount $description $referenceDate $recurrent $type $status"
     }
 
-    fun toSqsMessage(): ExpenseSqsDto {
-        return ExpenseSqsDto(
-            type,
+    fun toSqsMessage(): SqsMessageDto {
+        return SqsMessageDto(
+            FinancialRegisterType.EXPENSE,
             amount,
             amount,
             referenceDate,
