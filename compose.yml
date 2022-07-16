@@ -25,7 +25,7 @@ services:
       - AWS_DEFAULT_REGION=us-east-1
       - EDGE_PORT=4566
       - DEBUG=1
-      - HOSTNAME_EXTERNAL=localstack
+#      - HOSTNAME_EXTERNAL=localstack
     volumes:
       - "${TEMPDIR:-/tmp/localstack}:/tmp/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"

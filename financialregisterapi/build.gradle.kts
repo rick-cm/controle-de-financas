@@ -53,6 +53,10 @@ dependencies {
 //JWT
 	implementation ("io.jsonwebtoken:jjwt:0.9.1")
 	implementation ("jakarta.xml.bind:jakarta.xml.bind-api:2.3.2")
+//SQS
+	platform("io.awspring.cloud:spring-cloud-aws-dependencies:2.3.0")
+	implementation("io.awspring.cloud:spring-cloud-starter-aws-messaging:2.3.0")
+	implementation("io.awspring.cloud:spring-cloud-aws-messaging:2.3.0")
 }
 
 tasks.withType<KotlinCompile> {

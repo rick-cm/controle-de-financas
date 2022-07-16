@@ -5,6 +5,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConvertedEnum
 import com.fasterxml.jackson.annotation.JsonProperty
+import rcmto.financialregisterapi.dto.ExpenseSqsDto
 import rcmto.financialregisterapi.enums.ExpenseStatus
 import rcmto.financialregisterapi.enums.ExpenseType
 import java.math.BigDecimal
@@ -66,5 +67,15 @@ class Expense {
 
     override fun toString(): String {
         return "$uuid $user $amount $description $referenceDate $recurrent $type $status"
+    }
+
+    fun toSqsMessage(): ExpenseSqsDto {
+        return ExpenseSqsDto(
+            type,
+            amount,
+            amount,
+            referenceDate,
+            user
+        )
     }
 }

@@ -22,4 +22,12 @@ aws:
     region: us-east-1
     endpointUrl: http://localhost:4566
 
+  sqs:
+    endpointUrl: http://localhost:4566
+
+cloud:
+  aws:
+    sns:
+      enabled: false
+
 
